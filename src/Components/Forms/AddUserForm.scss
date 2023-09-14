@@ -1,11 +1,37 @@
-.add_user_form{
-    width: 60%;
-    height: 70%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    border-radius:5px;
-    box-shadow: 0 3px 2rem -1rem black;
-    background: white;
-    transform: translate(-50%, -50%);
+.add_user_form {
+  width: 60%;
+  height: 70%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 5px;
+  box-shadow: 0 3px 2rem -1rem black;
+  background: white;
+  transform: translate(-50%, -50%);
+
+  h2 {
+    margin: 1.5rem 0;
+  }
+
+  .input_fields {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  //   .buttons {
+  //     background: yellow;
+  //     margin-top: 4rem;
+  //   }
+
+  button {
+    color: white;
+  }
+
+  button:nth-child(1) {
+    background: red;
+  }
+  button:nth-child(2) {
+    background: #1677ff;
+  }
 }

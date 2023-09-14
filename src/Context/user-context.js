@@ -1,4 +1,4 @@
-import React, { createContext } from "react";
+import React, { createContext, useState } from "react";
 
 const UserContext = createContext({});
 
@@ -38,8 +38,21 @@ const Dummy_users = [
 ];
 
 const UserContextProvider = ({ children }) => {
+  const [showForm, setShowForm] = useState(false);
+  const [storedValues, setStoredValues] = useState([]);
+  const [userId, setUserId] = useState("");
+
   return (
-    <UserContext.Provider value={{ Dummy_users }}>
+    <UserContext.Provider
+      value={{
+        Dummy_users,
+        showForm,
+        setShowForm,
+        storedValues,
+        setStoredValues,
+        userId,
+        setUserId,
+      }}>
       {children}
     </UserContext.Provider>
   );

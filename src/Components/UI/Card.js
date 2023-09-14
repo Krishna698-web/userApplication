@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import "./Card.scss";
+// import EditUserForm from "../Forms/EditUserForm";
+import { UserContext } from "../../Context/user-context";
 
 const Card = ({ user, onDelete }) => {
   const deleteCard = (userId) => {
     // console.log(userId);
     onDelete(userId);
+  };
+
+  const { showForm, setShowForm, setUserId } = useContext(UserContext);
+
+  const editUserHandler = (userId) => {
+    setShowForm(true);
+    setUserId(userId);
   };
 
   return (
@@ -40,7 +49,10 @@ const Card = ({ user, onDelete }) => {
           DELETE
         </button>
         <button className="view_btn">VIEW</button>
-        <button className="edit_btn">EDIT</button>
+        <button className="edit_btn" onClick={() => editUserHandler(user.id)}>
+          EDIT
+        </button>
+        {/* {showForm && <EditUserForm />} */}
       </div>
     </div>
   );

@@ -4,13 +4,10 @@ import Card from "../UI/Card";
 import "./Cards.scss";
 
 const Cards = () => {
-  //   const { Dummy_users } = useContext(UserContext);
-
-  const [storedValues, setStoredValues] = useState([]);
+  const { storedValues, setStoredValues } = useContext(UserContext);
 
   const fetchDataFromLocalStroage = () => {
     setStoredValues(JSON.parse(localStorage.getItem("users")));
-    console.log(storedValues);
   };
 
   let filteredCards = [];
