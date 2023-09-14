@@ -13,7 +13,7 @@ const getUsersInfo = () => {
   }
 };
 
-const Form = () => {
+const Form = ({ onRender }) => {
   const [name, setName] = useState("");
   const [dob, setDob] = useState("");
   const [food, setFood] = useState("");
@@ -25,10 +25,10 @@ const Form = () => {
 
   const { setShowForm } = useContext(UserContext);
 
-  let arr = [];
-
-  // useEffect(() => {
-  // }, [users]);
+  useEffect(() => {
+    localStorage.setItem("users", JSON.stringify(users));
+    console.log(users);
+  }, [users]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -43,17 +43,19 @@ const Form = () => {
       id: Math.random(),
     };
 
-    setUsers([info, ...users]);
-    localStorage.setItem("users", JSON.stringify(users));
+    setUsers((prevUsers) => {
+      const updatedUsers = [info, ...prevUsers];
+      setName("");
+      setDob("");
+      setFood("");
+      setAge("");
+      setGender("");
+      setHobbies("");
+      setShowForm(false);
+      return updatedUsers;
+    });
 
-    setName("");
-    setDob("");
-    setFood("");
-    setAge("");
-    setGender("");
-    setHobbies("");
-
-    setShowForm(false);
+    onRender(true);
   };
 
   return (

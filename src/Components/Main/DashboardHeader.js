@@ -3,7 +3,7 @@ import AddUserForm from "../Forms/AddUserForm";
 import "./DashboardHeader.scss";
 import { UserContext } from "../../Context/user-context";
 
-const DashboardHeader = () => {
+const DashboardHeader = ({ onRender }) => {
   const { showForm, setShowForm } = useContext(UserContext);
   return (
     <div className="dash_heading">
@@ -13,7 +13,7 @@ const DashboardHeader = () => {
       <div>
         <button onClick={() => setShowForm(!showForm)}>ADD USERS</button>
       </div>
-      {showForm && <AddUserForm />}
+      {showForm && <AddUserForm onRender={onRender} />}
     </div>
   );
 };

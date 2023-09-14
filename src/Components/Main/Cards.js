@@ -3,11 +3,12 @@ import { UserContext } from "../../Context/user-context";
 import Card from "../UI/Card";
 import "./Cards.scss";
 
-const Cards = () => {
+const Cards = ({ render, onRender }) => {
   const { storedValues, setStoredValues } = useContext(UserContext);
 
   const fetchDataFromLocalStroage = () => {
     setStoredValues(JSON.parse(localStorage.getItem("users")));
+    onRender(false);
   };
 
   let filteredCards = [];
@@ -18,7 +19,7 @@ const Cards = () => {
 
   useEffect(() => {
     fetchDataFromLocalStroage();
-  }, []);
+  }, [render]);
 
   return (
     <div className="cards">
