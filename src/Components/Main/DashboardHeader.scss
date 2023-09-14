@@ -1,0 +1,15 @@
+.dash_heading{
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem 2rem;
+
+    button{
+        background: #1677ff;
+        border: none;
+        padding: 10px 1.3rem;
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        font-size: 12px;
+    }
+}

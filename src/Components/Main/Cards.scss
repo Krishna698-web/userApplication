@@ -1,0 +1,12 @@
+.cards{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-content: center;
+    justify-content: center;
+    // flex-wrap: ;
+    gap: 1.5rem;
+    background: whitesmoke;
+    padding: 2rem 5rem;
+
+}

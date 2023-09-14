@@ -1,0 +1,16 @@
+.menu {
+  background: #393939;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 2rem;
+
+  h2{
+    color: white;
+    font-weight: 500;
+  }
+
+  .icon{
+    color: white;
+    font-size: 2rem;
+  }  
+}

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import AddUserForm from "../Forms/AddUserForm";
+import "./DashboardHeader.scss";
 
 const DashboardHeader = () => {
   const [showForm, setShowform] = useState(false);
   return (
-    <div>
+    <div className="dash_heading">
       <div>
         <h3>LIST OF USERS</h3>
       </div>

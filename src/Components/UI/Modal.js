@@ -1,10 +1,9 @@
 import React from "react";
+import "./Modal.scss";
 
 const Modal = ({ onClose, children }) => {
   return (
-    <div
-      onClick={onClose}
-      className="fixed inset-0 flex justify-center items-center z-20">
+    <div onClick={onClose} className="modal">
       {children}
     </div>
   );

@@ -1,37 +1,46 @@
 import React from "react";
+import "./Card.scss";
 
-const Card = ({ user }) => {
+const Card = ({ user, onDelete }) => {
+  const deleteCard = (userId) => {
+    // console.log(userId);
+    onDelete(userId);
+  };
+
   return (
-    <div>
-      <div>
-        <h3>Name: {user.name}</h3>
+    <div className="card">
+      <div className="card_head">
+        <h4>Name: {user.name}</h4>
         <span>color</span>
       </div>
-      <div>
-        <div>
-          <span>AGE:</span> <span>{user.age}</span>
+      <div className="user_info">
+        <div className="field">
+          <span>AGE:</span>
+          <span>{user.age}</span>
         </div>
-        <div>
+        <div className="field">
           <span>DOB:</span>
           <span>{user.dob}</span>
         </div>
-        <div>
+        <div className="field">
           <span>GENDER:</span>
           <span>{user.gender}</span>
         </div>
-        <div>
+        <div className="field">
           <span>FOOD:</span>
-          <div>{user.food}</div>
+          <span>{user.food}</span>
         </div>
-        <div>
+        <div className="field">
           <span>HOBBIES:</span>
-          <div>{user.hobbies}</div>
+          <span>{user.hobbies}</span>
         </div>
       </div>
-      <div>
-        <button>DELETE</button>
-        <button>VIEW</button>
-        <button>EDIT</button>
+      <div className="buttons">
+        <button className="del_btn" onClick={() => deleteCard(user.id)}>
+          DELETE
+        </button>
+        <button className="view_btn">VIEW</button>
+        <button className="edit_btn">EDIT</button>
       </div>
     </div>
   );
