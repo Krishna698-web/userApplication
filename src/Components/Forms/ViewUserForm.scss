@@ -1,6 +1,26 @@
 .user_form {
+  span {
+    font-weight: 500;
+  }
+
+  .left_form > div,
+  .right_form > div {
+    margin: 8px 0;
+  }
+
   p {
     border: 1px solid black;
     padding: 6px 8px;
+    width: 12rem;
+  }
+
+  .hobbies + p {
+    height: 6rem;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 1rem;
   }
 }

@@ -15,29 +15,29 @@ const ViewUserForm = ({ onViewForm }) => {
         <div className="input_fields">
           <div className="left_form">
             <div>
-              <label htmlFor="name">NAME</label>
+              <span className="name">NAME</span>
               <p>{user[0].name}</p>
             </div>
             <div>
-              <label htmlFor="dob">DOB</label>
+              <span className="dob">DOB</span>
               <p>{user[0].dob}</p>
             </div>
             <div>
-              <label htmlFor="food">FAVOURITE FOOD</label>
+              <span className="food">FAVOURITE FOOD</span>
               <p>{user[0].food}</p>
             </div>
           </div>
           <div className="right_form">
             <div>
-              <label htmlFor="age">AGE</label>
+              <span className="age">AGE</span>
               <p>{user[0].age}</p>
             </div>
             <div>
-              <label htmlFor="gender">GENDER</label>
+              <span className="gender">GENDER</span>
               <p>{user[0].gender}</p>
             </div>
             <div>
-              <label htmlFor="hobbies">HOBBIES</label>
+              <span className="hobbies">HOBBIES</span>
               <p>{user[0].hobbies}</p>
             </div>
           </div>
