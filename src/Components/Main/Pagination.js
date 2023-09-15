@@ -9,13 +9,17 @@ const Pagination = () => {
 
   return (
     <div>
-      <span>◀</span>
-      {/* {storedUsers.length > 6 &&
-        .map((page, i) => (
-          <span key={i}>{page}</span>
-        ))
-        } */}
-      <span>▶</span>
+      {storedUsers.length > 6 && (
+        <div>
+          <span>◀</span>
+          {[
+            ...Array(storedUsers.length / 6).map((_, i) => (
+              <span key={i}>{i + 1}</span>
+            )),
+          ]}
+          <span>▶</span>
+        </div>
+      )}
     </div>
   );
 };

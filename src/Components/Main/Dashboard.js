@@ -12,7 +12,7 @@ const Dashboard = () => {
     <div className="dashboard">
       <DashboardHeader onRender={setRender} />
       <Cards onRender={setRender} render={render} />
-      <Pagination />
+      {/* <Pagination /> */}
     </div>
   );
 };

@@ -4,8 +4,7 @@ import Card from "../UI/Card";
 import "./Cards.scss";
 
 const Cards = ({ render, onRender }) => {
-  const { storedUsers, setStoredUsers, userId, setUser } =
-    useContext(UserContext);
+  const { storedUsers, setStoredUsers } = useContext(UserContext);
 
   const fetchDataFromLocalStroage = () => {
     setStoredUsers(JSON.parse(localStorage.getItem("users")));

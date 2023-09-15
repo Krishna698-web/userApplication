@@ -12,7 +12,7 @@ const EditUserForm = ({ onShowEditForm, onRender }) => {
   const [gender, setGender] = useState(user[0].gender);
   const [hobbies, setHobbies] = useState(user[0].hobbies);
 
-  const [editedUsers, setEditedUsers] = useState({});
+  const [editedUsers, setEditedUsers] = useState([]);
 
   useEffect(() => {
     localStorage.setItem("users", JSON.stringify(editedUsers));
