@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Card.scss";
 // import EditUserForm from "../Forms/EditUserForm";
 import { UserContext } from "../../Context/user-context";
@@ -28,11 +28,30 @@ const Card = ({ user, onRender }) => {
     setUser(storedUsers.filter((u) => u.id === userId));
   };
 
+  console.log(typeof parseInt(user.age));
+
+  const colorHandler = () => {
+    let colorClass = "";
+    if (parseInt(user.age) > 0 && parseInt(user.age) < 25) {
+      colorClass = "green";
+    } else if (parseInt(user.age) >= 25 && parseInt(user.age) < 50) {
+      colorClass = "purple";
+    } else {
+      colorClass = "orange";
+    }
+
+    return colorClass;
+  };
+
+  useEffect(() => {
+    console.log(colorHandler());
+  }, []);
+
   return (
     <div className="card">
       <div className="card_head">
         <h4>{user.name}</h4>
-        <span>color</span>
+        <span className={`color ${colorHandler()}`}></span>
       </div>
       <div className="user_info">
         <div className="field">

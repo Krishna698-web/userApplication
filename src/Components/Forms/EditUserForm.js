@@ -3,8 +3,7 @@ import { UserContext } from "../../Context/user-context";
 import Modal from "../UI/Modal";
 
 const EditUserForm = ({ onShowEditForm, onRender }) => {
-  const { user, storedUsers, setStoredUsers, setShowAddUserForm } =
-    useContext(UserContext);
+  const { user, storedUsers, setStoredUsers } = useContext(UserContext);
 
   const [name, setName] = useState(user[0].name);
   const [dob, setDob] = useState(user[0].dob);
@@ -28,24 +27,28 @@ const EditUserForm = ({ onShowEditForm, onRender }) => {
       age,
       gender,
       hobbies,
-      id: Math.random(),
+      id: user[0].id,
     };
 
-    // storedUsers.filter((sUser) => {
-    //   if (sUser.id === user.id) {
-    setStoredUsers((prevUsers) => {
-      const updatedUsers = [info, ...prevUsers];
+    console.log(info);
+
+    let newUsers = storedUsers.filter((s) => s.id !== info.id);
+
+    console.log(newUsers);
+
+    setStoredUsers(() => {
+      const updatedUsers = [info, ...newUsers];
       setName("");
       setDob("");
       setFood("");
       setAge("");
       setGender("");
       setHobbies("");
-      setShowAddUserForm(false);
+      onShowEditForm(false);
       return updatedUsers;
     });
-    //   }
-    // });
+
+    console.log("storedUsers", storedUsers);
 
     onRender(true);
   };
