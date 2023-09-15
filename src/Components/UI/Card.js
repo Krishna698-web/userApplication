@@ -2,24 +2,36 @@ import React, { useContext, useState } from "react";
 import "./Card.scss";
 // import EditUserForm from "../Forms/EditUserForm";
 import { UserContext } from "../../Context/user-context";
+import EditUserForm from "../Forms/EditUserForm";
+import ViewUserForm from "../Forms/ViewUserForm";
 
-const Card = ({ user, onDelete }) => {
-  const deleteCard = (userId) => {
-    // console.log(userId);
-    onDelete(userId);
+const Card = ({ user, onRender }) => {
+  const { setUser, storedUsers } = useContext(UserContext);
+
+  const [showEditUserForm, setShowEditUserForm] = useState(false);
+
+  const [viewForm, setViewForm] = useState(false);
+
+  const deleteCardHandler = (userId) => {
+    let filteredCards = storedUsers.filter((val) => val.id !== userId);
+    localStorage.setItem("users", JSON.stringify(filteredCards));
+    onRender(true);
   };
 
-  const { showForm, setShowForm, setUserId } = useContext(UserContext);
+  const viewFormHandler = (userId) => {
+    setViewForm(true);
+    setUser(storedUsers.filter((u) => u.id === userId));
+  };
 
   const editUserHandler = (userId) => {
-    setShowForm(true);
-    setUserId(userId);
+    setShowEditUserForm(true);
+    setUser(storedUsers.filter((u) => u.id === userId));
   };
 
   return (
     <div className="card">
       <div className="card_head">
-        <h4>Name: {user.name}</h4>
+        <h4>{user.name}</h4>
         <span>color</span>
       </div>
       <div className="user_info">
@@ -45,14 +57,30 @@ const Card = ({ user, onDelete }) => {
         </div>
       </div>
       <div className="buttons">
-        <button className="del_btn" onClick={() => deleteCard(user.id)}>
-          DELETE
-        </button>
-        <button className="view_btn">VIEW</button>
-        <button className="edit_btn" onClick={() => editUserHandler(user.id)}>
-          EDIT
-        </button>
-        {/* {showForm && <EditUserForm />} */}
+        <div>
+          <button
+            className="del_btn"
+            onClick={() => deleteCardHandler(user.id)}>
+            DELETE
+          </button>
+        </div>
+        <div>
+          <button className="view_btn" onClick={() => viewFormHandler(user.id)}>
+            VIEW
+          </button>
+          {viewForm && <ViewUserForm onViewForm={setViewForm} />}
+        </div>
+        <div>
+          <button className="edit_btn" onClick={() => editUserHandler(user.id)}>
+            EDIT
+          </button>
+          {showEditUserForm && (
+            <EditUserForm
+              onShowEditForm={setShowEditUserForm}
+              onRender={onRender}
+            />
+          )}
+        </div>
       </div>
     </div>
   );

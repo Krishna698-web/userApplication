@@ -1,47 +1,60 @@
-.card{
-    border: 0.5px solid gray;
-    box-shadow: 0 2px 1rem -10px black;
+.card {
+  border: 0.5px solid gray;
+  box-shadow: 0 2px 1rem -10px black;
+  border-radius: 5px;
+  width: 50rem;
+
+  .card_head {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 1rem;
+    border-bottom: 1px solid black;
+  }
+
+  .user_info {
+    text-align: left;
+    padding: 5px 1rem;
+  }
+
+  .field span:nth-child(2) {
+    font-weight: bold;
+    margin-left: 3px;
+  }
+
+  .buttons {
+    display: flex;
+    gap: 3px;
+    justify-content: space-between;
+    border-top: 1px solid black;
+    padding: 10px 1rem;
+  }
+
+  button {
+    color: white;
+    padding: 6px 1.2rem;
+    border: none;
     border-radius: 5px;
-    // padding: 1rem;
+    box-shadow: 0 2px 10px -8px black;
+  }
 
-    .card_head{
-        display: flex;
-        justify-content: space-between;
-        padding: 5px 1rem;
-        border-bottom: 1px solid black;
-    }
+  .del_btn {
+    background: red;
+  }
 
-    .user_info{
-        text-align: left;
-        padding: 5px 1rem;
-    }
+  .view_btn,
+  .edit_btn {
+    background: #1677ff;
+  }
+}
 
-    .field span:nth-child(2){
-        font-weight: bold;
-        margin-left: 3px;
-    }
+@media (min-width: 380px) and (max-width: 800px) {
+  .card {
+    width: 20rem;
+  }
+}
 
-    .buttons{
-        display: flex;
-        gap: 3px;
-        justify-content:space-between;
-        border-top: 1px solid black;
-        padding: 5px 1rem;
-    }
-
-    button{
-        color: white;
-        padding: 5px 1rem;
-        border: none;
-        border-radius: 5px;
-        box-shadow: 0 2px 10px -8px black;
-    }
-
-    .del_btn{
-        background: red;
-    }
-
-    .view_btn, .edit_btn{
-        background: #1677ff;
-    }
+@media (min-width: 800px) and (max-width: 2000px) {
+  .card {
+    width: 25rem;
+  }
 }

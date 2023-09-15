@@ -1,5 +1,5 @@
 .add_user_form {
-  width: 60%;
+  width: 90%;
   height: 70%;
   position: absolute;
   top: 50%;
@@ -16,13 +16,43 @@
   .input_fields {
     width: 100%;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
     justify-content: space-around;
   }
 
-  //   .buttons {
-  //     background: yellow;
-  //     margin-top: 4rem;
-  //   }
+  .field {
+    margin-bottom: 0.5rem;
+  }
+
+  label {
+    font-weight: 500;
+  }
+
+  input[type="text"],
+  input[type="date"],
+  input[type="number"],
+  select,
+  textarea {
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 5px 8px;
+    margin-top: 6px;
+
+    display: block;
+  }
+
+  input[type="radio"] {
+    margin-right: 5px;
+  }
+
+  .buttons {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+  }
 
   button {
     color: white;
@@ -33,5 +63,36 @@
   }
   button:nth-child(2) {
     background: #1677ff;
+  }
+}
+
+@media (min-width: 530px) and (max-width: 2000px) {
+  .add_user_form {
+    width: 50%;
+    padding: 2rem;
+
+    .input_fields {
+      width: 100%;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: start;
+    }
+
+    .field {
+      margin-bottom: 1rem;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    input[type="number"],
+    select,
+    textarea {
+      margin-top: 6px;
+      padding: 8px 1rem;
+    }
+
+    .buttons {
+      justify-content: center;
+    }
   }
 }

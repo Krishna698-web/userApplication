@@ -1,19 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import Modal from "../UI/Modal";
-import "./AddUserForm.scss";
 import { UserContext } from "../../Context/user-context";
+import Modal from "../UI/Modal";
 
-const getUsersInfo = () => {
-  const localValue = localStorage.getItem("users");
-  // console.log(localValue);
-  if (!localValue) {
-    return [];
-  } else {
-    return JSON.parse(localValue);
-  }
-};
+const EditUserForm = ({ onShowEditForm, onRender }) => {
+  const { user, storedUsers, setStoredUsers, setShowAddUserForm } =
+    useContext(UserContext);
 
-const AddUserForm = ({ onRender }) => {
   const [name, setName] = useState("");
   const [dob, setDob] = useState("");
   const [food, setFood] = useState("");
@@ -21,14 +13,9 @@ const AddUserForm = ({ onRender }) => {
   const [gender, setGender] = useState("");
   const [hobbies, setHobbies] = useState("");
 
-  const [users, setUsers] = useState(getUsersInfo);
-
-  const { setShowAddUserForm } = useContext(UserContext);
-
   useEffect(() => {
-    localStorage.setItem("users", JSON.stringify(users));
-    // console.log(users);
-  }, [users]);
+    localStorage.setItem("users", JSON.stringify(storedUsers));
+  }, [storedUsers]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -47,16 +34,20 @@ const AddUserForm = ({ onRender }) => {
       id: Math.random(),
     };
 
-    setUsers((prevUsers) => {
-      const updatedUsers = [info, ...prevUsers];
-      setName("");
-      setDob("");
-      setFood("");
-      setAge("");
-      setGender("");
-      setHobbies("");
-      setShowAddUserForm(false);
-      return updatedUsers;
+    storedUsers.filter((sUser) => {
+      if (sUser.id === user.id) {
+        setStoredUsers((prevUsers) => {
+          const updatedUsers = [info, ...prevUsers];
+          setName("");
+          setDob("");
+          setFood("");
+          setAge("");
+          setGender("");
+          setHobbies("");
+          setShowAddUserForm(false);
+          return updatedUsers;
+        });
+      }
     });
 
     onRender(true);
@@ -64,35 +55,35 @@ const AddUserForm = ({ onRender }) => {
 
   return (
     <>
-      <Modal onClose={() => setShowAddUserForm(false)} />
+      <Modal onClose={() => onShowEditForm(false)} />
       <form onSubmit={submitHandler} className="add_user_form">
-        <h2>ADD USER</h2>
+        <h2>EDIT USER</h2>
         <div className="input_fields">
           <div className="left_form">
-            <div className="field">
+            <div>
               <label htmlFor="name">NAME</label>
               <input
                 type="text"
                 id="name"
-                value={name}
+                value={user[0].name}
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
-            <div className="field">
+            <div>
               <label htmlFor="dob">DOB</label>
               <input
                 type="date"
                 id="dob"
-                value={dob}
+                value={user[0].dob}
                 onChange={(e) => setDob(e.target.value)}
               />
             </div>
-            <div className="field">
+            <div>
               <label htmlFor="food">FAVOURITE FOOD</label>
               <select
                 name="food"
                 id="food"
-                value={food ? food : "PIZZA"}
+                value={user[0].food}
                 onChange={(e) => setFood(e.target.value)}>
                 <option value="PIZZA">PIZZA</option>
                 <option value="BURGER">BURGER</option>
@@ -102,16 +93,16 @@ const AddUserForm = ({ onRender }) => {
             </div>
           </div>
           <div className="right_form">
-            <div className="field">
+            <div>
               <label htmlFor="age">AGE</label>
               <input
                 type="number"
                 id="age"
-                value={age}
+                value={user[0].age}
                 onChange={(e) => setAge(e.target.value)}
               />
             </div>
-            <div className="field">
+            <div>
               <label htmlFor="gender">GENDER</label>
               <div>
                 <input
@@ -134,20 +125,20 @@ const AddUserForm = ({ onRender }) => {
                 <label htmlFor="female">FEMALE</label>
               </div>
             </div>
-            <div className="field">
+            <div>
               <label htmlFor="hobbies">HOBBIES</label>
               <textarea
                 name="hobbies"
                 id="hobbies"
-                cols="20"
+                cols="30"
                 rows="10"
-                value={hobbies}
+                value={user[0].hobbies}
                 onChange={(e) => setHobbies(e.target.value)}></textarea>
             </div>
           </div>
         </div>
         <div className="buttons">
-          <button type="button" onClick={() => setShowAddUserForm(false)}>
+          <button type="button" onClick={() => onShowEditForm(false)}>
             CANCEL
           </button>
           <button type="submit">SUBMIT</button>
@@ -157,4 +148,4 @@ const AddUserForm = ({ onRender }) => {
   );
 };
 
-export default AddUserForm;
+export default EditUserForm;

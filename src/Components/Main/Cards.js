@@ -4,17 +4,12 @@ import Card from "../UI/Card";
 import "./Cards.scss";
 
 const Cards = ({ render, onRender }) => {
-  const { storedValues, setStoredValues } = useContext(UserContext);
+  const { storedUsers, setStoredUsers, userId, setUser } =
+    useContext(UserContext);
 
   const fetchDataFromLocalStroage = () => {
-    setStoredValues(JSON.parse(localStorage.getItem("users")));
+    setStoredUsers(JSON.parse(localStorage.getItem("users")));
     onRender(false);
-  };
-
-  let filteredCards = [];
-  const deleteCard = (userId) => {
-    filteredCards = storedValues.filter((val) => val.id !== userId);
-    localStorage.setItem("users", JSON.stringify(filteredCards));
   };
 
   useEffect(() => {
@@ -23,11 +18,11 @@ const Cards = ({ render, onRender }) => {
 
   return (
     <div className="cards">
-      {!storedValues ? (
+      {!storedUsers ? (
         <p>Nothing</p>
       ) : (
-        storedValues.map((u, i) => (
-          <Card key={i} user={u} onDelete={deleteCard} />
+        storedUsers.map((user, i) => (
+          <Card key={i} user={user} onRender={onRender} />
         ))
       )}
     </div>
