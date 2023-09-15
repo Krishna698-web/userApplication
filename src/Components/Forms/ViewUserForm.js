@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import Modal from "../UI/Modal";
 import { UserContext } from "../../Context/user-context";
+import "./ViewUserForm.scss";
 
 const ViewUserForm = ({ onViewForm }) => {
   const { user } = useContext(UserContext);
@@ -9,7 +10,7 @@ const ViewUserForm = ({ onViewForm }) => {
   return (
     <>
       <Modal onClose={() => onViewForm(false)} />
-      <div className="add_user_form">
+      <div className="user_form">
         <h2>VIEW USER</h2>
         <div className="input_fields">
           <div className="left_form">

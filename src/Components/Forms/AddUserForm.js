@@ -35,15 +35,11 @@ const AddUserForm = ({ onRender }) => {
 
     let info = {
       name: name.length > 0 ? name : alert("Please enter name"),
-      dob:
-        dob !== null || undefined
-          ? dob
-          : alert("Please enter your date of birth"),
-      food: food.length > 0 ? food : alert("Please select your food"),
-      age: age.length > 0 ? age : alert("Please enter your age"),
-      gender: gender.length > 0 ? gender : alert("Please specify your gender"),
-      hobbies:
-        hobbies.length > 0 ? hobbies : alert("Please mention your hobbies"),
+      dob,
+      food,
+      age,
+      gender,
+      hobbies,
       id: Math.random(),
     };
 
@@ -65,7 +61,7 @@ const AddUserForm = ({ onRender }) => {
   return (
     <>
       <Modal onClose={() => setShowAddUserForm(false)} />
-      <form onSubmit={submitHandler} className="add_user_form">
+      <form onSubmit={submitHandler} className="user_form">
         <h2>ADD USER</h2>
         <div className="input_fields">
           <div className="left_form">

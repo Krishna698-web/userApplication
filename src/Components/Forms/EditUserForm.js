@@ -6,12 +6,12 @@ const EditUserForm = ({ onShowEditForm, onRender }) => {
   const { user, storedUsers, setStoredUsers, setShowAddUserForm } =
     useContext(UserContext);
 
-  const [name, setName] = useState("");
-  const [dob, setDob] = useState("");
-  const [food, setFood] = useState("");
-  const [age, setAge] = useState("");
-  const [gender, setGender] = useState("");
-  const [hobbies, setHobbies] = useState("");
+  const [name, setName] = useState(user[0].name);
+  const [dob, setDob] = useState(user[0].dob);
+  const [food, setFood] = useState(user[0].food);
+  const [age, setAge] = useState(user[0].age);
+  const [gender, setGender] = useState(user[0].gender);
+  const [hobbies, setHobbies] = useState(user[0].hobbies);
 
   useEffect(() => {
     localStorage.setItem("users", JSON.stringify(storedUsers));
@@ -19,36 +19,33 @@ const EditUserForm = ({ onShowEditForm, onRender }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    console.log("click");
 
     let info = {
       name: name.length > 0 ? name : alert("Please enter name"),
-      dob:
-        dob !== null || undefined
-          ? dob
-          : alert("Please enter your date of birth"),
-      food: food.length > 0 ? food : alert("Please select your food"),
-      age: age.length > 0 ? age : alert("Please enter your age"),
-      gender: gender.length > 0 ? gender : alert("Please specify your gender"),
-      hobbies:
-        hobbies.length > 0 ? hobbies : alert("Please mention your hobbies"),
+      dob,
+      food,
+      age,
+      gender,
+      hobbies,
       id: Math.random(),
     };
 
-    storedUsers.filter((sUser) => {
-      if (sUser.id === user.id) {
-        setStoredUsers((prevUsers) => {
-          const updatedUsers = [info, ...prevUsers];
-          setName("");
-          setDob("");
-          setFood("");
-          setAge("");
-          setGender("");
-          setHobbies("");
-          setShowAddUserForm(false);
-          return updatedUsers;
-        });
-      }
+    // storedUsers.filter((sUser) => {
+    //   if (sUser.id === user.id) {
+    setStoredUsers((prevUsers) => {
+      const updatedUsers = [info, ...prevUsers];
+      setName("");
+      setDob("");
+      setFood("");
+      setAge("");
+      setGender("");
+      setHobbies("");
+      setShowAddUserForm(false);
+      return updatedUsers;
     });
+    //   }
+    // });
 
     onRender(true);
   };
@@ -56,7 +53,7 @@ const EditUserForm = ({ onShowEditForm, onRender }) => {
   return (
     <>
       <Modal onClose={() => onShowEditForm(false)} />
-      <form onSubmit={submitHandler} className="add_user_form">
+      <form onSubmit={submitHandler} className="user_form">
         <h2>EDIT USER</h2>
         <div className="input_fields">
           <div className="left_form">
@@ -65,7 +62,7 @@ const EditUserForm = ({ onShowEditForm, onRender }) => {
               <input
                 type="text"
                 id="name"
-                value={user[0].name}
+                value={name}
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
@@ -74,7 +71,7 @@ const EditUserForm = ({ onShowEditForm, onRender }) => {
               <input
                 type="date"
                 id="dob"
-                value={user[0].dob}
+                value={dob}
                 onChange={(e) => setDob(e.target.value)}
               />
             </div>
@@ -83,7 +80,7 @@ const EditUserForm = ({ onShowEditForm, onRender }) => {
               <select
                 name="food"
                 id="food"
-                value={user[0].food}
+                value={food}
                 onChange={(e) => setFood(e.target.value)}>
                 <option value="PIZZA">PIZZA</option>
                 <option value="BURGER">BURGER</option>
@@ -98,7 +95,7 @@ const EditUserForm = ({ onShowEditForm, onRender }) => {
               <input
                 type="number"
                 id="age"
-                value={user[0].age}
+                value={age}
                 onChange={(e) => setAge(e.target.value)}
               />
             </div>
@@ -132,7 +129,7 @@ const EditUserForm = ({ onShowEditForm, onRender }) => {
                 id="hobbies"
                 cols="30"
                 rows="10"
-                value={user[0].hobbies}
+                value={hobbies}
                 onChange={(e) => setHobbies(e.target.value)}></textarea>
             </div>
           </div>
