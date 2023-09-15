@@ -12,9 +12,11 @@ const EditUserForm = ({ onShowEditForm, onRender }) => {
   const [gender, setGender] = useState(user[0].gender);
   const [hobbies, setHobbies] = useState(user[0].hobbies);
 
+  const [editedUsers, setEditedUsers] = useState({});
+
   useEffect(() => {
-    localStorage.setItem("users", JSON.stringify(storedUsers));
-  }, [storedUsers]);
+    localStorage.setItem("users", JSON.stringify(editedUsers));
+  }, [editedUsers]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -30,13 +32,8 @@ const EditUserForm = ({ onShowEditForm, onRender }) => {
       id: user[0].id,
     };
 
-    console.log(info);
-
     let newUsers = storedUsers.filter((s) => s.id !== info.id);
-
-    console.log(newUsers);
-
-    setStoredUsers(() => {
+    setEditedUsers(() => {
       const updatedUsers = [info, ...newUsers];
       setName("");
       setDob("");
@@ -48,7 +45,7 @@ const EditUserForm = ({ onShowEditForm, onRender }) => {
       return updatedUsers;
     });
 
-    console.log("storedUsers", storedUsers);
+    // console.log("storedUsers", editedUsers);
 
     onRender(true);
   };

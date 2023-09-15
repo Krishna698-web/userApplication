@@ -28,7 +28,7 @@ const Card = ({ user, onRender }) => {
     setUser(storedUsers.filter((u) => u.id === userId));
   };
 
-  console.log(typeof parseInt(user.age));
+  // console.log(typeof parseInt(user.age));
 
   const colorHandler = () => {
     let colorClass = "";
